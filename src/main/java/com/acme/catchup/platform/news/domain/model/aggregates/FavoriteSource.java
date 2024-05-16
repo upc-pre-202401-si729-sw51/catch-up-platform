@@ -1,3 +1,8 @@
+/**
+ * @summary
+ * Favorite Source Aggregate Root
+ *
+ */
 package com.acme.catchup.platform.news.domain.model.aggregates;
 
 import com.acme.catchup.platform.news.domain.model.commands.CreateFavoriteSourceCommand;
