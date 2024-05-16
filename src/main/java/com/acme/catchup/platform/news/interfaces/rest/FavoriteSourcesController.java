@@ -14,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import static org.springframework.http.HttpStatus.CREATED;
@@ -61,4 +62,14 @@ public class FavoriteSourcesController {
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
+    @GetMapping
+    public ResponseEntity<?> getFavoriteSourcesWithParameters(@RequestParam Map<String, String> params) {
+        if(params.containsKey("newsApiKey") && params.containsKey("sourceId")) {
+            return getFavoriteSourceByNewsApiKeyAndSourceId(params.get("newsApiKey"), params.get("sourceId"));
+        } else if (params.containsKey("newsApiKey")) {
+            return getAllFavoriteSourceByNewsApiKey(params.get("newsApiKey"));
+        } else {
+            return ResponseEntity.badRequest().build();
+        }
+    }
 }
